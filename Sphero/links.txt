@@ -1,0 +1,2 @@
+https://sphero-edu-windows.s3.amazonaws.com/downloads.html
+Install all 3 files
