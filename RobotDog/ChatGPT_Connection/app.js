@@ -10,8 +10,9 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, 
 });
 
+// This will only be used when code is involved. 
 const extractJSCode = (content) => {
-  const regex = /```([^\n]*)\n([\s\S]*?)```/g;
+  const regex = /```([^\n]*)\n([\s\S]*?)```/g; 
   const matches = [...content.matchAll(regex)];
   const codeBlocks = matches.map((match) => ({
     language: match[1].trim(),
@@ -20,9 +21,9 @@ const extractJSCode = (content) => {
   return codeBlocks;
 };
 
-const chatPrompt = "Hello, how may I help you?";
+const chatPrompt = "Hello";
 const messages = [{ role: "system", content: chatPrompt }];
-let userInput = await readline.question("> ")
+let userInput = await readline.question("> \n")
 
 let botMessage;
 

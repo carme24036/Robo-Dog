@@ -1,4 +1,4 @@
-run these commands in the console before running the program
+run these commands in the console before running the program:
 
 npm init
 npm i
