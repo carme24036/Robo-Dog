@@ -1,0 +1,8 @@
+run these commands in the console before running the program
+
+npm init
+npm i
+npm i dotenv
+npm i openai
+
+to run the program just do node app.js in this file directory
