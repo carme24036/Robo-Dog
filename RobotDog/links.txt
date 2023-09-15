@@ -1,2 +1,5 @@
 https://www.youtube.com/watch?v=G1cDLqhhBsU
 Video to code Alexa skills
+
+https://www.youtube.com/watch?v=zRp-8ZD6ghw&list=PLxQx8K02En6sgTLxZVxIUQAUF_95n6Xev&index=12
+Video how to link ChatGPT with Go1 (RoboDog)
