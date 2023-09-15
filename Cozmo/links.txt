@@ -1,2 +1,0 @@
-https://www.phooky.com/blog/learn-to-code-python-with-cozmo/#:~:text=With%20an%20Android%20or%20iOS,to%20develop%20more%20complex%20programs
-Link to page talking about cozmo python and SDK
