@@ -10,7 +10,7 @@ load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = api_key
 
-# # Import the Go1 library
+# Import the Go1 library
 # from droneblocks.go1_js import Go1, Go1Mode
 # dog = Go1()
 # dog.init()
@@ -26,41 +26,7 @@ def extract_code(content):
     return code_blocks
 
 chat_prompt = """
-Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot Dog. 
-Here are some method definitions to control the Go1:
-                    
-goForward(speed: float, length_of_time: int)
-goBackward(speed: float, length_of_time: int)
-goLeft(speed: float, length_of_time: int)
-goRight(speed: float, length_of_time: int)
-turnLeft(speed: float, length_of_time: int)
-turnRight(speed: float, length_of_time: int)
-  
-All methods accept two arguments. The first is speed with a value from 0 to 1, where 1 is full speed. The second argument is a duration in milliseconds.
-
-Keep in mind that before we can move Go1, we need to make sure to set its mode to Go1Mode.walk.
-
-There is a wait method in cases where we want to pause between commands. It accepts a number in milliseconds:
-
-wait(length_of_time: int)
-
-Please make sure that all wait commands are awaited.
-
-For the dog to lay down, we use the following command:
-
-setMode(Go1Mode.standDown)
-
-and to stand up, we use
-
-setMode(Go1Mode.standUp)
-
-You can also change the LEDs of the robot dog using the following commands:
-
-setLedColor(red: int, green: int, blue: int)
-
-Where red, green, and blue are integers between 0 and 255.
-
-Blinking the LED must always have a 2-second delay between colors.
+Hello ChatGPT
 """
 
 messages = [{"role": "system", "content": chat_prompt}]
