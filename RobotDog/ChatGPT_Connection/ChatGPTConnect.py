@@ -1,6 +1,5 @@
 import os
 import openai
-import pyreadline as readline
 
 # Load environment variables from a .env file
 from dotenv import load_dotenv
@@ -50,7 +49,7 @@ while user_input != "quit":
 
             code_block = extract_code(bot_message['content'])
 
-            print("\n", bot_message['content'], "\n")
+            print("\n Bot-", bot_message['content'], "\n")
 
             user_input = input("\n>")
         else:
