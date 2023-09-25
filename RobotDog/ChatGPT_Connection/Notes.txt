@@ -8,3 +8,10 @@ npm i openai
 to run the program just run node app.js in the console in this file directory
 an API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
 for example: "OPENAI_API_KEY = apiKey_here"
+
+for python
+pip install openai
+pip install python-dotenv
+pip install pyreadline
+
+python .\ChatGPTConnect.py
