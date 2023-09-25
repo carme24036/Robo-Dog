@@ -12,6 +12,5 @@ for example: "OPENAI_API_KEY = apiKey_here"
 for python
 pip install openai
 pip install python-dotenv
-pip install pyreadline
 
 python .\ChatGPTConnect.py
