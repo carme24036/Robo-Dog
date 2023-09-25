@@ -30,7 +30,7 @@ Hello ChatGPT
 """
 
 messages = [{"role": "system", "content": chat_prompt}]
-user_input = input("Welcome to ChatGPT. Feel free to ask it questions.\n> ")
+user_input = input("Welcome to ChatGPT. Feel free to ask questions.\n> ")
 
 bot_message = ""
 
@@ -60,5 +60,3 @@ while user_input != "quit":
         print(error)
         user_input = input("\nSomething went wrong, try asking again.\n")
 
-# Close the readline interface
-readline.write_history_file('chat_history.txt')
