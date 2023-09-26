@@ -1,2 +1,2 @@
 # RoboDog
-A project to turn a robotic dog into an Alexa with text to speech.
+A project to make a robotic dog talk
