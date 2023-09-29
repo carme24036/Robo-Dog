@@ -1,16 +1,18 @@
-run these commands in the console before running the program:
+Run these commands in the console before running the program
 
+For Javascript:
 npm init
 npm i
 npm i dotenv
 npm i openai
 
-to run the program just run node app.js in the console in this file directory
-an API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
-for example: "OPENAI_API_KEY = apiKey_here"
+To run the program just run node app.js in the console in this file directory
+An API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
+For example: "OPENAI_API_KEY = apiKey_here"
 
-for python
+For python: 
 pip install openai
 pip install python-dotenv
+(pip3 for python3)
 
-python .\ChatGPTConnect.py
+python ChatGPTConnect.py to run
