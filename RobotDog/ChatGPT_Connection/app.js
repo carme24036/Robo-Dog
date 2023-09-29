@@ -65,7 +65,6 @@ setLedColor(red: number, green: number, blue: number)
 Where red, green, and blue are integers between 0 and 255.
 
 Blinking the LED must always have a 2 second delay between colors.
-
 `;
 
 const messages = [{ role: "system", content: chatPrompt }];
