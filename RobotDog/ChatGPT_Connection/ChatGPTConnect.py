@@ -1,23 +1,26 @@
+# This is the Python version of the ChatGPT-RoboDog project. It uses most of the same functions and works the same way as the Javascript version but with a few changes. 
+
 # Import modules
-import os                        # Works with env stuff (I think)
-import openai                    # OpenAI module needed to communicate with ChatGPT API
-from dotenv import load_dotenv   # Lets the program load/read .env files
-import re                        # Support for regular expressions
+import os                                   # Provides a way to interact with and manipulate aspects of the operating system that is running the code
+import openai                               # OpenAI module needed to communicate with ChatGPT API
+from dotenv import load_dotenv              # Lets the program load/read .env files
+import re                                   # Support for regular expressions
 
 # Load environment variables from a .env file
 load_dotenv()
-
-# Initialize OpenAI client
-api_key = os.getenv("OPENAI_API_KEY")
+ 
+# Initialize OpenAI module
+api_key = os.getenv("OPENAI_API_KEY")       # Gets openai API key from the .env file for use in this program
 openai.api_key = api_key
 
-# Function to extract code blocks 
 def extract_code(content):
+    '''This function is used to extract code blocks'''
     regex = r"```([^\n]*)\n([\s\S]*?)```"
     matches = re.finditer(regex, content)
-    code_blocks = [{"language": match.group(1).strip(), "code_block": match.group(2).strip()} for match in matches]
+    code_blocks = [{"language": 'python', "code_block": match.group(2).strip()} for match in matches]
     return code_blocks
 
+# This is the initial message that is sent to ChatGPT when the program is run. It tells ChatGPT how to control the robot dog so that it can make programs from it. 
 chat_prompt = """
 Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot dog. 
 
@@ -34,7 +37,7 @@ After those are imported, make sure to add the following code:
 sys.path.append('/lib/python/arm64')
 import robot_interface as sdk
 
-That code adds a path to the Python library.
+That code adds a path to the Python library and imports the module from the library that was added to the path.
 
 The following code is what will get the dog to walk:
 
@@ -84,12 +87,13 @@ udp.SetSend(cmd)
 udp.Send()
 """
 
+# This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user
 messages = [{"role": "system", "content": chat_prompt}]
 user_input = input("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit'.\n\n> ")
 
-bot_message = ""
+bot_message = "" # ChatGPT's response/message
 
-while user_input != "quit":
+while user_input != "quit": 
     messages.append({"role": "user", "content": user_input})
 
     try:
@@ -102,13 +106,14 @@ while user_input != "quit":
 
         if bot_message:
             messages.append(bot_message)
-            code_block = extract_code(bot_message['content'])
-            print("\nBot-", bot_message['content'])
+            code_block = extract_code(bot_message['content']) # Extracts the code from ChatGPT
+            print("\nRAW CODE: ", '\n', code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console.
             user_input = input("\n>")
 
         else:
             user_input = input("\nNo response, try asking again.\n>")
 
+    # Error handling
     except Exception as error:
         print(error)
         user_input = input("\nSomething went wrong, try asking again.\n>") 
