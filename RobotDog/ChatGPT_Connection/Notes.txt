@@ -5,6 +5,7 @@ npm init
 npm i
 npm i dotenv
 npm i openai
+npm i @droneblocks/go1-js
 
 To run the program just run node app.js in the console in this file directory
 An API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
