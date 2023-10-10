@@ -68,12 +68,11 @@ Blinking the LED must always have a 2 second delay between colors.
 `;
 
 const messages = [{ role: "system", content: chatPrompt }];
-let userInput = await readline.question("Welcome to ChatGPT. Feel free to ask it questions. \n>")
+let userInput = await readline.question("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit' or ctrl + c.\n\n>")
 
 let botMessage;
 
-while (userInput !== "quit") {
-
+while (userInput != "quit") {
   messages.push({ role: "user", content: userInput });
 
   try {
@@ -85,18 +84,16 @@ while (userInput !== "quit") {
     botMessage = chatCompletion.choices[0].message;
 
     if (botMessage) {
-      messages.push(botMessage)
-
-      const codeBlock = extractJSCode(botMessage.content)
-    
-      console.log("\n", botMessage.content, "\n")
-
-      userInput = await readline.question("\n>")
-
-    } else {
+      messages.push(botMessage);
+      const codeBlock = extractJSCode(botMessage.content);
+      console.log("\nBot-", botMessage.content);
+      userInput = await readline.question("\n>");
+    } 
+    else {
       userInput = await readline.question("\nNo response, try asking again.\n>");
-    }
-  } catch (error) {
+    };
+  } 
+  catch (error) {
     console.log(error.message);
     userInput = await readline.question("\nSomething went wrong, try asking again.\n>");
   };

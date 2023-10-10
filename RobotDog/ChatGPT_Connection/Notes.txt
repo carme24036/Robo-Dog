@@ -9,6 +9,8 @@ npm i openai
 To run the program just run node app.js in the console in this file directory
 An API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
 For example: "OPENAI_API_KEY = apiKey_here"
+The openAI version is currently v4. 
+In the event of the verison being updated, search online for how to manually update the code or run the command 'npm exec openai migrate'
 
 For python: 
 pip install openai
