@@ -1,8 +1,10 @@
-import os
-import openai
+# Import modules
+import os                        # Works with env stuff (I think)
+import openai                    # OpenAI module needed to communicate with ChatGPT API
+from dotenv import load_dotenv   # Lets the program load/read .env files
+import re                        # Support for regular expressions
 
 # Load environment variables from a .env file
-from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize OpenAI client
@@ -10,7 +12,6 @@ api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = api_key
 
 # Function to extract code blocks 
-import re
 def extract_code(content):
     regex = r"```([^\n]*)\n([\s\S]*?)```"
     matches = re.finditer(regex, content)
@@ -20,7 +21,7 @@ def extract_code(content):
 chat_prompt = """
 Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot dog. 
 
-We use the following code to be able to tell the Robot Dog to do commands, such as walk:
+We use the following code to be able to tell the Robot Dog to do commands, such as walk and crouch:
 
 First, we import these modules:
 sys
@@ -30,7 +31,7 @@ numpy
 
 After those are imported, make sure to add the following code:
 
-sys.path.append('../lib/python/arm64')
+sys.path.append('/lib/python/arm64')
 import robot_interface as sdk
 
 That code adds a path to the Python library.
@@ -57,13 +58,13 @@ if __name__ == '__main__':
         udp.Recv()
         udp.GetRecv(state)
 
-        cmd.mode = 0      # 0:idle, default stand      1:forced stand     2:walk continuously
+        cmd.mode = 0               # 0:idle, default stand      1:forced stand     2:walk continuously
         cmd.gaitType = 0
-        cmd.speedLevel = 0
-        cmd.footRaiseHeight = 0
-        cmd.bodyHeight = 0
+        cmd.speedLevel = 0         # This controls the level of speed
+        cmd.footRaiseHeight = 0    # This is how high the foot of the dog is raised
+        cmd.bodyHeight = 0         # This changes the height of the dog's body
         cmd.euler = [0, 0, 0]
-        cmd.velocity = [0, 0]
+        cmd.velocity = [0, 0]      # This is what controls the velocity/speed
         cmd.yawSpeed = 0.0
         cmd.reserve = 0
 
@@ -77,14 +78,14 @@ if __name__ == '__main__':
             cmd.mode = 1
             cmd.bodyHeight = -0.2
     
-At the end of the program, these two commands must be there:
+These last two commands end the program:
 
 udp.SetSend(cmd)
 udp.Send()
 """
 
 messages = [{"role": "system", "content": chat_prompt}]
-user_input = input("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit'.\n> ")
+user_input = input("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit'.\n\n> ")
 
 bot_message = ""
 
@@ -110,4 +111,4 @@ while user_input != "quit":
 
     except Exception as error:
         print(error)
-        user_input = input("\nSomething went wrong, try asking again.\n")
+        user_input = input("\nSomething went wrong, try asking again.\n>") 
