@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="RoboDogLooks.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="turnOn.html">Turn on the Dog</a>
+        <a href="connectTo.html">Connect to the Dog</a>
+        <a href="loginInfo.html">Login Info</a>
+        <a href="links.html">Links</a>
+    </nav>
+    <h1>Connecting To Dog</h1>
+    <h2>How to Connect to Dog Wired</h2>
+    <ol>
+        <li>Have the dog on the ground flat, turned on.</li>
+        <li>Plug in an hdmi cable and a keyboard and/or mouse into the right side on the Robot Dog's back.</li>
+        <li>Open up a terminal and type "sudo ifconfig wlan0 up" and "sudo ifconfig wlan2 up" to turn on the dog's internet for computers to wirelessly connect to the dog.</li>
+    </ol>
+    <h2>Connect Wirelessly</h2>
+    <ol>
+        <li>Use "PuTTy" to remote access one of the dogs.</li>
+        <li>Type in the RoboDog's ip in the Host Name box.</li>
+        <li>Login as pi, password is 123.</li>
+    </ol>
+    <h2>Send File To Dog</h2>
+    <ol>
+        <li>Type in "pscp filename pi@ip/home/pi"</li>
+    </ol>
+</body>
+</html>
