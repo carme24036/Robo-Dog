@@ -18,7 +18,10 @@ api_key = os.getenv("OPENAI_API_KEY")       # Gets openai API key from the .env 
 openai.api_key = api_key
 
 def extract_code(content):
-    '''This function is used to extract code blocks'''
+    '''
+    The following function will only be used when ChatGPT sends a response that involves code.
+    It will extract code blocks from ChatGPT's response using a regular expression.
+    '''
     regex = r"```([^\n]*)\n([\s\S]*?)```"
     matches = re.finditer(regex, content)
     code_blocks = [{"language": "python", "code_block": match.group(2).strip()} for match in matches]
