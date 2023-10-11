@@ -1,15 +1,22 @@
-// This is the original Javascript version of the ChatGPT-RoboDog project.
+/*
+ This program was written by Carmen Cedano in September 2023.
+ This is the original Javascript version of the ChatGPT-RoboDog project.
+ It uses the OpenAI module to communicate to ChatGPT so that it can give the robot dog commands. 
+ ChatGPT has already been told how to control the dog. All you need to do is tell it what you want the dog to do. 
+*/
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 // import modules
-import { stdin as input, stdout as output } from "node:process";          // Used to interact with the command line or console 
-import { createInterface } from "node:readline/promises";                 // Used to read lines of text from an input source like the command line
-const readline = createInterface({ input, output });                      // Allows the program to read text from an input source and write text to an output source
-import * as dotenv from "dotenv";                                         // Allows the program to read content from environmental variables
+import { stdin as input, stdout as output } from "node:process";          // Used to interact with the command line or console.
+import { createInterface } from "node:readline/promises";                 // Used to read lines of text from an input source like the command line.
+const readline = createInterface({ input, output });                      // Allows the program to read text from an input source and write text to an output source.
+import * as dotenv from "dotenv";                                         // Allows the program to read content from environmental variables.
 dotenv.config();
 
 import OpenAI from 'openai';
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY                                      // Gets openai API key from the .env file for use in this program
+  apiKey: process.env.OPENAI_API_KEY                                      // Gets openai API key from the .env file for use in this program.
 });
 
 // import the go1 js node library and initialize the Robot Dog
@@ -17,10 +24,14 @@ import { Go1, Go1Mode } from "@droneblocks/go1-js";
 let dog = new Go1();
 dog.init();
 dog.setMode(Go1Mode.stand);
-// dog.goForward(0.25, 2000);                                               This is commented because otherwise it will make the dog move as soon as the program is run
+// dog.goForward(0.25, 2000);                                     **This is commented because otherwise it will make the dog move as soon as the program is run.
 
-// This function will only be used when ChatGPT sends a response that involves code. It extracts code blocks from ChatGPT's response
+/*
+ * The following function will only be used when ChatGPT sends a response that involves code. 
+ * It extracts code blocks from ChatGPT's response using a regular expression.
+*/
 const extractJSCode = (content) => {
+
   const regex = /```([^\n]*)\n([\s\S]*?)```/g;
   const matches = [...content.matchAll(regex)];
   const codeBlocks = matches.map((match) => ({
@@ -30,10 +41,13 @@ const extractJSCode = (content) => {
   return codeBlocks;
 };
 
-// This is the initial message that is sent to ChatGPT when the program is run. It tells ChatGPT how to control the robot dog so that it can make programs from it. 
-const chatPrompt = `
+/* 
+The 'chatPrompt' variable is the initial message that is sent to ChatGPT when the program is run. 
+It tells ChatGPT how to control the robot dog so that it can make programs from it. 
+*/ 
+const chatPrompt = ` 
 Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot Dog. 
-Here are some method definitions to control the Go1:
+Here are some method definitions to control the Go1: 
                     
   goForward(speed: number, lengthOfTime: number)
   goBackward(speed: number, lengthOfTime: number)
@@ -56,11 +70,11 @@ For the dog to lay down we use the following command:
 
   setMode(Go1Mode.standDown)
 
-and to stand up we use
+and to stand up we use: 
 
   setMode(Go1Mode.standUp)
 
-You can also change the LEDs of the robot dog using the following commands:
+You can also change the LEDs of the robot dog using the following command:
 
   setLedColor(red: number, green: number, blue: number)
 
@@ -71,7 +85,7 @@ Blinking the LED must always have a 2 second delay between colors.
 For this program, make sure the code is in Javascript.
 `;
 
-// This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user
+// This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user.
 const messages = [{ role: "system", content: chatPrompt }];
 
 let userInput = await readline.question("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit' or ctrl + c.\n\n>")
@@ -91,7 +105,7 @@ while (userInput != "quit") {
 
     if (botMessage) {
       messages.push(botMessage);
-      const codeBlock = extractJSCode(botMessage.content);                              //Extracts the code from ChatGPT
+      const codeBlock = extractJSCode(botMessage.content);  // Extracts the code from ChatGPT
       console.log("\nRAW CODE: ", '\n', codeBlock, '\n', "\nBot-", botMessage.content); // This is where ChatGPT responds and the code is logged into the console.
       userInput = await readline.question("\n>");
     }
@@ -106,4 +120,3 @@ while (userInput != "quit") {
   };
   readline.close();
 };
-
