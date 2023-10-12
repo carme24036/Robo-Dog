@@ -31,7 +31,6 @@ dog.setMode(Go1Mode.stand);
  * It extracts code blocks from ChatGPT's response using a regular expression.
 */
 const extractJSCode = (content) => {
-
   const regex = /```([^\n]*)\n([\s\S]*?)```/g;
   const matches = [...content.matchAll(regex)];
   const codeBlocks = matches.map((match) => ({
