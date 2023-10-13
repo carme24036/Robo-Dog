@@ -1,4 +1,4 @@
-# This program was written by Carmen Cedano in September 2023. 
+# This program was written and edited by Carmen Cedano. Development began in September 2023.  
 # This is the Python version of the ChatGPT-RoboDog project. The JavaScript version is slightly different.  
 # It uses most of the same functions and works the same way as the JavaScript version but with a few changes. 
 
@@ -47,7 +47,7 @@ import robot_interface as sdk
 
 That code adds a path to the Python library and imports the module from the library that was added to the path.
 
-The following code is what will get the dog to walk:
+The following code is what will make the dog walk:
 
 if __name__ == '__main__':
 
@@ -70,13 +70,13 @@ if __name__ == '__main__':
         udp.GetRecv(state)
 
         cmd.mode = 0               # 0:idle, default stand      1:forced stand     2:walk continuously
-        cmd.gaitType = 0           # I don't know what this does 
+        cmd.gaitType = 0           # Refers to the specific sequence of leg movements used in locomotion (the ability to move from one place to another).
         cmd.speedLevel = 0         # This controls the level of speed
         cmd.footRaiseHeight = 0    # This is how high the foot of the dog is raised
         cmd.bodyHeight = 0         # This changes the height of the dog's body
-        cmd.euler = [0, 0, 0]      # I don't know what this does
+        cmd.euler = [0, 0, 0]      # Specifies the orientation of the robot dog's body in terms of Euler angles.
         cmd.velocity = [0, 0]      # This is what controls the velocity/speed
-        cmd.yawSpeed = 0.0         # I don't know what this does
+        cmd.yawSpeed = 0.0         # Controls the yaw rotation speed of the robot dog. Yaw rotation refers to the rotation around the vertical axis (typically the Z-axis) of the robot's body.
         cmd.reserve = 0            # I don't know what this does 
 
         # Here is an example of a movement the Robot Dog can do: 
