@@ -77,7 +77,7 @@ if __name__ == '__main__':
         cmd.euler = [0, 0, 0]      # Specifies the orientation of the robot dog's body in terms of Euler angles.
         cmd.velocity = [0, 0]      # This is what controls the velocity/speed
         cmd.yawSpeed = 0.0         # Controls the yaw rotation speed of the robot dog. Yaw rotation refers to the rotation around the vertical axis (typically the Z-axis) of the robot's body.
-        cmd.reserve = 0            # I don't know what this does 
+        cmd.reserve = 0            # Reserved variable 
 
         # Here is an example of a movement the Robot Dog can do: 
         if(motiontime > 0 and motiontime < 1000):
@@ -93,6 +93,8 @@ These last two commands end the program:
 
 udp.SetSend(cmd)
 udp.Send()
+
+If the user asks you for code, please make it one single continuous program so that it's easy to copy, paste and run. 
 """
 
 # This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user
@@ -100,6 +102,7 @@ messages = [{"role": "system", "content": chat_prompt}]
 user_input = input("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit'.\n\n> ")
 
 bot_message = "" # ChatGPT's response/message
+code_block = ""
 
 while user_input != "quit": 
     messages.append({"role": "user", "content": user_input})
@@ -114,8 +117,14 @@ while user_input != "quit":
 
         if bot_message:
             messages.append(bot_message)
-            code_block = extract_code(bot_message['content']) # Extracts the code from ChatGPT
-            print("\nRAW CODE: ", '\n', code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console.
+            if bot_message: 
+                user_input = input("Would you like to see the raw unformatted code? y/n: \n>")
+                if user_input == 'y': 
+                    print("Here is the raw code: \n")
+                    code_block = extract_code(bot_message['content']) # Extracts the code from ChatGPT
+                    print("\nRAW CODE: ", '\n', code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console with the raw code included.
+                elif user_input == 'n':
+                    print(code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console with the raw code excluded.
             user_input = input("\n>")
         else:
             user_input = input("\nNo response, try asking again.\n>")

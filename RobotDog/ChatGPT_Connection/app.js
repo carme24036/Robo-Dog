@@ -20,10 +20,10 @@ const openai = new OpenAI({
 });
 
 // import the go1 js node library and initialize the Robot Dog
-import { Go1, Go1Mode } from "@droneblocks/go1-js";
-let dog = new Go1();
-dog.init();
-dog.setMode(Go1Mode.stand);
+// import { Go1, Go1Mode } from "@droneblocks/go1-js";
+// let dog = new Go1();
+// dog.init();
+// dog.setMode(Go1Mode.stand);
 // dog.goForward(0.25, 2000);                                     **This is commented because otherwise it will make the dog move as soon as the program is run.
 
 /*
@@ -82,6 +82,8 @@ Where red, green, and blue are integers between 0 and 255.
 Blinking the LED must always have a 2 second delay between colors.
 
 For this program, make sure the code is in Javascript.
+
+If the user asks you for code, please make it one single continuous program so that it's easy to copy, paste and run. 
 `;
 
 // This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user.
@@ -91,7 +93,7 @@ let userInput = await readline.question("Welcome to ChatGPT. Feel free to ask qu
 
 let botMessage; // ChatGPT's response/message
 
-while (userInput != "quit") {
+while (userInput !== "quit") {
   messages.push({ role: "user", content: userInput });
 
   try {
@@ -117,5 +119,4 @@ while (userInput != "quit") {
     console.log(error.message);
     userInput = await readline.question("\nSomething went wrong, try asking again.\n>");
   };
-  readline.close();
 };
