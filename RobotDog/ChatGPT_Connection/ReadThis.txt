@@ -1,21 +1,29 @@
-Run these commands in the console before running the program
+Read this file before trying to use the programs
 
-For Javascript:
+For JavaScript:
+
+Run these commands in the terminal before running the program:
+
 npm init
 npm i
 npm i dotenv
 npm i openai
 npm i @droneblocks/go1-js
 
-To run the program just run node app.js in the console in this file directory
-An API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variable
-For example: "OPENAI_API_KEY = apiKey_here"
-The openAI version is currently v4. 
-In the event of the verison being updated, search online for how to manually update the code or run the command 'npm exec openai migrate'
+An API Key is also needed and needs to be in a file called ".env" using the "OPENAI_API_KEY" variabl
+    - For example: "OPENAI_API_KEY = apiKey_here"
+
+The openAI version is currently v4 as of October 2023. 
+In the event of openai being updated, search online for how to manually update the code for the new version or run the command 'npm exec openai migrate' in the terminal
+
+To run the program just run "node app.js" in the console in this file directory
 
 For python: 
+
+Run these commands in the terminal before running the program:
+
 pip install openai
 pip install python-dotenv
-(pip3 for python3)
+(Substitute pip for pip3 if using python3)
 
-python ChatGPTConnect.py to run
+Enter 'python ChatGPTConnect.py' in the terminal to run 
