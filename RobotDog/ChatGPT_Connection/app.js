@@ -106,8 +106,17 @@ while (userInput !== "quit") {
 
     if (botMessage) {
       messages.push(botMessage);
-      const codeBlock = extractJSCode(botMessage.content);  // Extracts the code from ChatGPT
-      console.log("\nRAW CODE: ", '\n', codeBlock, '\n', "\nBot-", botMessage.content); // This is where ChatGPT responds and the code is logged into the console.
+      if (botMessage) {
+        userInput = await readline.question("Would you like to see the raw unformatted code? y/n: \n>")
+        if (userInput == 'y') {
+          console.log("Here is the raw code: \n")
+          const codeBlock = extractJSCode(botMessage.content);  // Extracts the code from ChatGPT
+          console.log("\nRAW CODE: ", '\n', codeBlock, '\n', "\nBot-", botMessage.content); // This is where ChatGPT responds and the code is logged into the console with the raw code included.
+        }
+        else if (userInput == 'n') {
+          console.log("\nBot-", botMessage.content) // This is where ChatGPT responds and the code is logged into the console with the raw code excluded.
+        }
+      }
       userInput = await readline.question("\n>");
     }
     else {

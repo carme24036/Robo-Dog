@@ -28,7 +28,7 @@ def extract_code(content):
     return code_blocks
 
 # This is the initial message that is sent to ChatGPT when the program is run. It tells ChatGPT how to control the robot dog so that it can make programs from it.
-# It contains some code from the example_walk.py file to give ChatGPT an example of some commands that can make the dog walk. 
+# It contains some code from the example_walk.py file in the example_py folder to give ChatGPT an example of some commands that can make the dog walk/move. 
 chat_prompt = """
 Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot dog. 
 
@@ -97,7 +97,7 @@ udp.Send()
 If the user asks you for code, please make it one single continuous program so that it's easy to copy, paste and run. 
 """
 
-# This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user
+# This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user.
 messages = [{"role": "system", "content": chat_prompt}]
 user_input = input("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit'.\n\n> ")
 
