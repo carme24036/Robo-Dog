@@ -118,17 +118,17 @@ while user_input != "quit":
         if bot_message:
             messages.append(bot_message)
             if bot_message: 
-                user_input = input("Would you like to see the raw unformatted code? y/n: \n>")
+                user_input = input("Would you like to see the raw unformatted code? y/n: \n> ")
                 if user_input == 'y': 
                     print("Here is the raw code: \n")
                     code_block = extract_code(bot_message['content']) # Extracts the code from ChatGPT
                     print("\nRAW CODE: ", '\n', code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console with the raw code included.
                 elif user_input == 'n':
-                    print(code_block, '\n', '\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console with the raw code excluded.
-            user_input = input("\n>")
+                    print('\nBot-', bot_message['content']) # This is where ChatGPT responds and the code is logged into the console with the raw code excluded.
+            user_input = input("\n> ")
         else:
-            user_input = input("\nNo response, try asking again.\n>")
+            user_input = input("\nNo response, try asking again.\n> ")
     # Error handling
     except Exception as error:
         print(error)
-        user_input = input("\nSomething went wrong, try asking again.\n>") 
+        user_input = input("\nSomething went wrong, try asking again.\n> ") 

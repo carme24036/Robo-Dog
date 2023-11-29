@@ -107,7 +107,7 @@ while (userInput !== "quit") {
     if (botMessage) {
       messages.push(botMessage);
       if (botMessage) {
-        userInput = await readline.question("Would you like to see the raw unformatted code? y/n: \n>")
+        userInput = await readline.question("Would you like to see the raw unformatted code? y/n: \n> ")
         if (userInput == 'y') {
           console.log("Here is the raw code: \n")
           const codeBlock = extractJSCode(botMessage.content);  // Extracts the code from ChatGPT
@@ -117,15 +117,15 @@ while (userInput !== "quit") {
           console.log("\nBot-", botMessage.content) // This is where ChatGPT responds and the code is logged into the console with the raw code excluded.
         }
       }
-      userInput = await readline.question("\n>");
+      userInput = await readline.question("\n> ");
     }
     else {
-      userInput = await readline.question("\nNo response, try asking again.\n>");
+      userInput = await readline.question("\nNo response, try asking again.\n> ");
     };
   }
   // Error handling
   catch (error) {
     console.log(error.message);
-    userInput = await readline.question("\nSomething went wrong, try asking again.\n>");
+    userInput = await readline.question("\nSomething went wrong, try asking again.\n> ");
   };
 };
