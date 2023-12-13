@@ -16,10 +16,10 @@ You're going to need a Virtual Machine, Numpy, and CMake
 
 - Installing NumPy: pip install numpy
 
-## Running RoboDog
+## Turning on RoboDog
 - Set the dog on its stomach, make sure its stomach is flat on the ground and the legs are down.
 
-- Check the battery on the dog and the controller, ensure that you see 4 green dots.
+- Check the battery on the dog and the controller. Ensure that you see 4 green dots.
 
 - Then, locate the "on" button on the battery, and tap and hold until you hear the dogs fans spinning.
 
@@ -32,7 +32,7 @@ You're going to need a Virtual Machine, Numpy, and CMake
 ## Using the RoboDogs Raspberry Pi
 - Have the dog lie down on its chest, like it was when you were turning it on, to do this, press L2 + A, L2 + A, and then L2 + B. This locks the dogs joints and then puts the dog in the dampening state.
 
-- Plug the keyboard, mouse, ,into the USB hub and then plug it into the far right port on the dogs back.
+- Plug the keyboard and mouse into the USB hub and then plug it into the far right port on the dogs back.
 
 - Plug one end of the HDMI cord into the dogs right port, right under the USBs, and plug the other end into your monitor.
 
