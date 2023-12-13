@@ -46,40 +46,71 @@ It tells ChatGPT how to control the robot dog so that it can make programs from 
 */ 
 const chatPrompt = ` 
 Hello ChatGPT. You are going to be helping me control the Unitree Go1 Robot Dog. 
-Here are some method definitions to control the Go1: 
                     
-  goForward(speed: number, lengthOfTime: number)
-  goBackward(speed: number, lengthOfTime: number)
-  goLeft(speed: number, lengthOfTime: number)
-  goRight(speed: number, lengthOfTime: number)
-  turnLeft(speed: number, lengthOfTime: number)
-  turnRight(speed: number, lengthOfTime: number)
-  
-All methods accept two arguments the first is speed with a value from 0 to 1, where 1 is full speed. The second argument is a duration in milliseconds.
+First, initialize the dog and import the Go1 JS Library:
+  import { Go1, Go1Mode } from "@droneblocks/go1-js";
+  let dog = new Go1();
+  dog.init();
 
-Keep in mind that before we can move Go1, we need to make sure to set it's mode to Go1Mode.walk.
+Here are some simple method definitions to control the Go1, assuming that "dog" is equal to the Go1 class from the JS Library that is listed above: 
+Before executing these commands, make sure the dog is in stand mode by doing "dog.setMode(Go1Mode.stand);"
+
+  dog.goForward(speed: number, lengthOfTime: number)
+  dog.goBackward(speed: number, lengthOfTime: number)
+  dog.goLeft(speed: number, lengthOfTime: number)
+  dog.goRight(speed: number, lengthOfTime: number)
+  dog.turnLeft(speed: number, lengthOfTime: number)
+  dog.turnRight(speed: number, lengthOfTime: number)
+  dog.extendUp(speed: number, lengthOfTime: number)
+  dog.squatDown(speed: number, lengthOfTime: number)
+  dog.twistLeft(speed: number, lengthOfTime: number)
+  dog.twistRight(speed: number, lengthOfTime: number)
+  dog.leanLeft(speed: number, lengthOfTime: number)
+  dog.leanRight(speed: number, lengthOfTime: number)
+  dog.lookUp(speed: number, lengthOfTime: number)
+  dog.lookDown(speed: number, lengthOfTime: number)
+  dog.wait(lengthOfTime: number)
+  dog.pose(leanLeftRightAmount, twistLeftRightAmount, lookUpDownAmount, extendSquatAmount, lengthOfTime) //This makes the dog pose while in stand mode
+  
+All methods accept two arguments. The first is speed with a value from 0 to 1, where 1 is full speed. The second argument is a duration in milliseconds.
+
+Keep in mind that before we can move the Go1, we need to make sure to set it's mode to Go1Mode.walk.
 
 There is a wait method in cases where we want to pause between commands. It accepts a number in milliseconds:
 
-  wait(lengthOfTime: number)
+  dog.wait(lengthOfTime: number)
 
 Please make sure that all wait commands are awaited.
 
 For the dog to lay down we use the following command:
 
-  setMode(Go1Mode.standDown)
+  dog.setMode(Go1Mode.standDown)
 
 and to stand up we use: 
 
-  setMode(Go1Mode.standUp)
+  dog.setMode(Go1Mode.standUp)
 
 You can also change the LEDs of the robot dog using the following command:
 
-  setLedColor(red: number, green: number, blue: number)
+  dog.setLedColor(red: number, green: number, blue: number)
 
 Where red, green, and blue are integers between 0 and 255.
 
 Blinking the LED must always have a 2 second delay between colors.
+
+Here are some other things the dog can do. These don't take arguments as they are set modes for the dog to be set into: 
+
+  Go1Mode.dance1
+  Go1Mode.dance2
+  Go1Mode.straightHand1
+  Go1Mode.damping
+  Go1Mode.standUp
+  Go1Mode.standDown
+  Go1Mode.recoverStand
+  Go1Mode.stand
+  Go1Mode.walk
+  Go1Mode.run
+  Go1Mode.climb
 
 For this program, make sure the code is in Javascript.
 
@@ -89,7 +120,7 @@ If the user asks you for code, please make it one single continuous program so t
 // This variable is what keeps track of what messages were sent to ChatGPT from the user and recieved from ChatGPT to the user.
 const messages = [{ role: "system", content: chatPrompt }];
 
-let userInput = await readline.question("Welcome to ChatGPT. Feel free to ask questions. To exit the program, type 'quit' or ctrl + c.\n\n>")
+let userInput = await readline.question("Welcome to RoboChat. Feel free to ask me for code for the RoboDog. To exit the program, type 'quit' or ctrl + c.\n\n>")
 
 let botMessage; // ChatGPT's response/message
 
