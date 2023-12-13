@@ -17,6 +17,8 @@ You're going to need a Virtual Machine, Numpy, and CMake
 
 - Installing NumPy: pip install numpy
 
+- PuTTy to remote SSH into the RoboDog
+
 ## Turning on RoboDog
 - Lay the dog on the floor. Make sure its stomach is flat on the ground and the legs are down.
 
